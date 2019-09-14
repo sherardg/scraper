@@ -3,26 +3,29 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="#">Mongo Scraper</a>
+            <a class="navbar-brand" href="/">Mongo Scraper</a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                <a class="nav-link active" href="/">Home</a>
-              </li>
+           
               <li class="nav-item">
                 <a class="nav-link" href="/saved">Saved Articles</a>
               </li>
  
               <li>
-                  <a class="btn btn-primary scrape-new text-white" role="button">Scrape New Articles</a>
+                  <a class="btn btn-primary text-white"  id="scrape-new" role="button">Scrape New Articles</a>
 
+              </li>
+
+              <li class-"nav-link">
+                  <a class="btn btn-danger clear">Clear Articles</a>
               </li>
             </ul>
 
           </div>
         </nav>
+
         <div class="jumbotron-fluid text-center">
         
-              <h1>Mongo Scraper Week 18 Homework</h1>
+              <h1>Mongo Scraper</h1>
               <p class="lead">Let's see what is happening at the Delco Times.</p>
               <img class="img-fluid" src="/img/breakingNews.png" alt="Breaking News Background">
           <div class="caption">
@@ -34,20 +37,42 @@
         
         <div id="container">
           <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <div class="card-body">
-                <h5 class="card-title">Latest News</h5>
-                <div id="articles"></div>   
-              </div>
-            </div>
-            {{!-- <div class="col-md-3">
-              <div id="notes"></div>
-              <p>Notes go here</p>
-            </div> --}}
+                  <h5 class="card-title">Latest News Headlines</h5>
+                  <div id="articles">
+                    {{#each Article}}
+                      <div data-_id="{{this._id}}" class="card">
+                        <div class="card-header">
+                          <h3> 
+                            <a class="article-link" target="_blank" rel="noopener noreferrer" href="{{this.url}}">{{this.article}}</a>
+                            <a class="btn btn-success save">Save Article</a>
+                          </h3>
+                        </div>
+                        <div class="card-body">{{this.summary}}</div>
+                      </div>
+                      {{/each}} {{#unless articles.length}}
+                      <div class="alert alert warning text-center">
+                        <h3>What would you like to do?</h3>
+                      </div>
+                      <div class="card-body text-center">
+                        <h4>
+                          <a href="/saved">Go to Saved Articles</a>
+                        </h4>
+                      </div>
+                     
+                  </div> 
+                </div>
+            </div>  
           </div>
-      </div>
+        </div>
+
+
+
+
+          
 
        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    <script src="/public/js/index.js"></script>
+    <script src="/app.js"></script>
