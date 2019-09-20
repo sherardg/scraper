@@ -3,20 +3,21 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="#">Mongo Scraper</a>
+            <a class="navbar-brand" href="/">Mongo Scraper</a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
               
+              
               <li class="nav-item active">
-                <a class="nav-link" href="/saved">Saved Articles</a>
+                <a href="/saved">Saved Articles</a>
               </li>
  
-              <li>
+              {{!-- <li>
                   <a class="btn btn-primary text-white" id="scrape-new" href="/" role="button">Scrape New Articles</a>
 
               </li>
               <li class="nav-item">
-                <a class="btn btn-danger clear">Clear Articles</a>
-              </li>
+                <a class="btn btn-danger text-white clear ml-2" href="/clear">Clear Articles</a>
+              </li> --}}
             </ul>
 
           </div>
@@ -24,17 +25,18 @@
 
         <div class="jumbotron-fluid text-center">
             
-              <h1>Mongo Scraper</h1>
+              <h1>Saved Articles</h1>
               <p class="lead">Let's see what is happening at the Delco Times.</p>
               <img class="img-fluid" src="/img/breakingNews.png" alt="Breaking News Background">
-          <div class="caption">
-              <h2>Saved Articles</h2>
-              <p>Your Saved Articles</p>
-          </div>
-  
+         
+        </div>
+
+        <div class="container-fluid article-container">
+
         </div>
         
-        <div id="container">
+        
+        {{!-- <div id="container">
           <div class="row">
             <div class="col-md-9">
                 <div class="card-body">
@@ -45,8 +47,8 @@
                       <div class="card-header">
                         <h3>
                           <a class="article-link" target="_blank" rel="noopener noreferrer" href="{{this.url}}">{{this.article}}</a>
-                          <a class="btn btn-danger delete">Delete From Saved</a>
-                          <a class="btn btn-info notes">Article Notes</a>
+                          <button class="btn btn-danger delete">Delete From Saved</button>
+                          <button class="btn btn-info notes">Article Notes</button>
                         </h3>
                       </div>
                       <div class="card-body">{{this.summary}}</div>
@@ -66,7 +68,7 @@
               {{/unless}}
             </div>
           </div>
-      </div>
+      </div> --}}
 
        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
