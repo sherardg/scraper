@@ -50,7 +50,7 @@ module.exports = function(router){
         });
     });
 
-    router.path("/api/headlines", function(req, res) {
+    router.patch("/api/headlines", function(req, res) {
         headlinesController.update(req.body, function(err, data){
             res.json(data);
         });

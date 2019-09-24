@@ -1,34 +1,35 @@
 //Require our dependency packages
 var express = require("express");
-var logger = require("morgan");
 var mongoose = require("mongoose");
 var exphbs = require("express-handlebars");
 
 // Our scraping tools
 // Axios is a promised-based http library, similar to jQuery's Ajax method
 // It works on the client and on the server
-var axios = require("axios");
-var cheerio = require("cheerio");
+// var axios = require("axios");
+// var cheerio = require("cheerio");
 
 // Require all models
-var db = require("./models");
+// var db = require("./models");
 
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 // Initialize Express
 var app = express();
 
+// var routes = require("./routes");
+
+//Set up the Express Router
 var router = express.Router();
 
+//Require the routes file to pass the router objec
 require("./config/routes")(router);
-// Configure middleware
 
-// Use morgan logger for logging requests
-app.use(logger("dev"));
+app.use(router);
+// Configure middleware
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 
 // Make public a static folder
 app.use(express.static(__dirname + "/public"));
@@ -42,14 +43,14 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-app.use(router);
+// app.use(routes);
 
 //From Homework instructions:
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
-mongoose.connect("mongodb://localhost/mongoHeadlines", { useNewUrlParser: true },
-console.log("Mongoose connection is successful"));
+mongoose.connect(MONGODB_URI);
+console.log("Mongoose connection is successful");
 
 // Routes
 

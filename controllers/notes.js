@@ -2,7 +2,7 @@
 
 var Note = require("../models/Note");
 
-module.export = {
+module.exports = {
     get: function (data, cb) {
         Note.find({
             _headlineId: data._id
@@ -13,7 +13,7 @@ module.export = {
             _headlineId: data._id,
             noteText: data.noteText
         };
-        Note.create(newNote, function(err, doc) {
+        Note.create(newNote, function (err, doc) {
             if (err) {
                 console.log(err);
             }
