@@ -12,12 +12,11 @@ var exphbs = require("express-handlebars");
 // Require all models
 // var db = require("./models");
 
+
 var PORT = process.env.PORT || 3000;
 
 // Initialize Express
 var app = express();
-
-// var routes = require("./routes");
 
 //Set up the Express Router
 var router = express.Router();
@@ -52,7 +51,7 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines
 mongoose.connect(MONGODB_URI);
 console.log("Mongoose connection is successful");
 
-// Routes
+//Routes
 
 // app.get("/all", function(req, res) {
 //   db.Article.find({}), function (err, found) {
@@ -69,27 +68,52 @@ console.log("Mongoose connection is successful");
 // // A GET route for scraping the echoJS website
 // app.get("/scrape", function(req, res) {
 //   // First, we grab the body of the html with axios
-//   axios.get("https://www.cbssports.com/nfl/").then(function(response) {
+//   axios.get("https://alistapart.com/").then(function(response) {
 //     // Then, we load that into cheerio and save it to $ for a shorthand selector
 //     var $ = cheerio.load(response.data);
 
+//     var articles = [];
+
 //     // Now, we grab every h2 within an article tag, and do the following:
-//     $("li.article-list-item-wrap").each(function(i, element) {
+//     $(".featured-wrap").each(function(i, element) {
 //       // Save an empty result object
 //       var result = {};
       
 
 //       // Add the text and href of every link, and save them as properties of the result object
-//       result.title = $(this)
-//         .children("h3.article-list-item-title")
-//         .text();
-//       result.summary = $(this)
-//         .children()
-//         .text();
-//       result.link = $(this)
-//         .children("a.article-list-item-image")
-//         .attr("href");
-//         console.log(result);
+//       // result.title = $(this)
+//       //   .children("h2")
+//       //   .text();
+//       // result.summary = $(this)
+//       //   .children("p")
+//       //   .text();
+//       // result.link = $(this)
+//       //   .children("a")
+//       //   .attr("href");
+//       //   console.log(result);
+//       var head= $(this).find("h2").text().trim();
+//         var url= $(this).find("a").attr("href");
+//         var sum = $(this).find(".entry-content").text().trim(); 
+//         console.log(url);
+
+//         if (head && sum && url) {
+//           //Replace regex method to clean up white space
+//           var headNeat =  head.replace(/(r\n|\n|\r|t|\s+)/gm, " ").trim();
+//           var sumNeat = sum.replace(/(r\n|\n|\r|t|\s+)/gm, " ").trim();
+
+//           var dataToAdd = {
+//               title: headNeat,
+//               summary: sumNeat,
+//               url: "http://www.nytimes.com" + url
+//           };
+//           articles.push(dataToAdd);
+//           console.log("Articles", articles);
+//       } 
+//   });
+//       return articles;
+//   }); 
+// });
+
 
 //       // Create a new Article using the `result` object built from scraping
 //       db.Article.create(result)

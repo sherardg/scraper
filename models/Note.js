@@ -10,7 +10,10 @@ var noteSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: "Headline"
   },
-    date: String,
+    date: {
+      type: Date,
+      default: Date.now
+    },
     noteText: String
 });
 
