@@ -4,6 +4,7 @@ $(document).ready(function(){
     var articleContainer = $(".article-container");
     $(document).on("click", ".btn.save", handleArticleSave);
     $(document).on("click", ".scrape-new", handleArticleScrape);
+    $(".clear").on("click", handleArticleClear);
 
 
 //Run initPage to get started
@@ -73,24 +74,27 @@ var emptyAlert = $(
     "<h4><a href='/saved'>Go to Saved Articles</a></h4>",
     "</div>",
     "</div>"
-    ].join(""));
+    ].join("")
+);
+
 //Append this data to the page
 articleContainer.append(emptyAlert);
 }
 
 function handleArticleSave() {
 //Function to use when user want to save an article
-var articleToSave = $(this).parents(".card").data();
-// Remove card from page
-$(this)
-.parents(".card")
-.remove();
+var articleToSave = $(this)
+    .parents(".card").data();
+    // Remove card from page
+    $(this)
+    .parents(".card")
+    .remove();
 
 articleToSave.saved = true;
 
 $.ajax({
-    method: "FETCH",
-    url: "/api/headlines",
+    method: "PUT",
+    url: "/api/headlines" + articleToSave._id,
     data: articleToSave
 })
 .then(function(data) {
@@ -107,7 +111,13 @@ function handleArticleScrape () {
         initPage();
         bootbox.alert("<h3 class='text-center m-top-80'>" + data.message + "<h3>");
         console.log("scrape complete");
-       
+    });
+}
+
+function handleArticleClear() {
+    $.get("api/clear").then(function() {
+      articleContainer.empty();
+      initPage();
     });
 }
 });

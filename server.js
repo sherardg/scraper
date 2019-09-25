@@ -19,12 +19,11 @@ var PORT = process.env.PORT || 3000;
 var app = express();
 
 //Set up the Express Router
-var router = express.Router();
+var routes = require("./routes");
 
 //Require the routes file to pass the router objec
-require("./config/routes")(router);
+// require("./config/routes")(router);
 
-app.use(router);
 // Configure middleware
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));
@@ -42,7 +41,8 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-// app.use(routes);
+// Have every request go through our route middleware
+app.use(routes); 
 
 //From Homework instructions:
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
