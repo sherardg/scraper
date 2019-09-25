@@ -12,9 +12,13 @@
               </li>
  
               <li>
-                  <a class="btn btn-primary text-white scrape-new">SCRAPE NEW ARTICLES</a>
+                  <a class="btn btn-primary text-white scrape-new mr-2">SCRAPE NEW ARTICLES</a>
 
               </li>
+              <li class="nav-item">
+                  <a class="btn btn-danger text-white clear ">CLEAR ARTICLES!</a>
+             </li>
+
             </ul>
 
           </div>
@@ -23,14 +27,13 @@
         <div class="jumbotron-fluid text-center">
         
               <h1>Mongo Scraper</h1>
-              <p class="lead">Let's see what is happening at the Delco Times.</p>
               <img class="img-fluid" src="/img/breakingNews.png" alt="Breaking News Background">
           
         </div>
 
         <div class="container-fluid article-container">
-
-            {{#each articles}}
+  
+           {{#each articles}}
   <div data-_id="{{this._id}}" class="card">
     <div class="card-header">
       <h3>
@@ -50,9 +53,8 @@
     </div>
     <div class="card-body text-center">
       <h4>
-        <a class="scrape-new">Try Scraping New Articles</a>
-      </h4>
-      <h4>
+        <a href="/" class="scrape-new">Try Scraping New Articles</a> | 
+      
         <a href="/saved">Go to Saved Articles</a>
       </h4>
     </div>
