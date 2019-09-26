@@ -5,7 +5,7 @@ var scrape = require("../scripts/scrape");
 
 module.exports = {
     scrapeHeadlines: function(req, res) {
-        //scrape data from A list Apart
+        //scrape data from 6abc
         return scrape()
         .then(function(articles){
         // insert articles into db
@@ -17,6 +17,13 @@ module.exports = {
                     message: "No new articles today.  Check back tomorrow!"
                 });
             }
+            else {
+                // Otherwise send back a count of how many new articles we got
+                res.json({
+                  message: "Added " + dbHeadline.length + " new articles!"
+                });
+            }
+      
         })
         .catch(function(err) {
             // This query won't insert articles with duplicate headlines, but it will error after inserting the others

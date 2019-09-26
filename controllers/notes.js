@@ -1,7 +1,6 @@
 //Controller for notes
 
 var db = require("../models");
-// var Note = require("../models/Note");
 
 module.exports = {
 
