@@ -41,7 +41,7 @@ function createCard(article) {
 //Function to construct JQuery element containing all the formatted HTML for the bootstrap card
     var card = $("<div class='card'>");
     var cardHeader = $("<div class='card-header'>").append(
-    $("<h3>"). append (
+    $("<h3>").append (
         $("<a class='article-link' target='_blank' rel='noopener noreferrer'>")
         .attr("href", article.url)
         .text(article.headline),
@@ -109,7 +109,7 @@ function handleArticleScrape () {
     $.get("/api/fetch")
     .then(function(data) {
         initPage();
-        bootbox.alert("<h3 class='text-center m-top-80'>" + data.message + "<h3>");
+        bootbox.alert($("<h3 class='text-center m-top-80'>").text(data.message));
         console.log("scrape complete");
     });
 }
