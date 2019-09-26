@@ -5,8 +5,8 @@
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <a class="navbar-brand" href="/">Mongo Scraper</a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
             
-           
               <li class="nav-item">
                 <a class="nav-link" href="/saved">Saved Articles</a>
               </li>
@@ -24,54 +24,58 @@
           </div>
         </nav>
 
-        <div class="jumbotron-fluid text-center">
-        
+        <div class="jumbotron text-center">
+          <div class="overlay">
+          </div>
+            <div class="background-image">
+            </div>
+            <div class="caption">
               <h1>Mongo Scraper</h1>
-              <img class="img-fluid" src="/img/breakingNews.png" alt="Breaking News Background">
-          
-        </div>
+              <p>6 ABC Edition</p>
+            </div>
+          </div>
 
         <div class="container-fluid article-container">
+          <div id=article-container></div>
   
            {{#each articles}}
-  <div data-_id="{{this._id}}" class="card">
-    <div class="card-header">
-      <h3>
-        <a class="article-link" target="_blank" rel="noopener noreferrer" href="{{this.url}}">{{this.headline}}</a>
-        <a class="btn btn-success save">Save Article</a>
-      </h3>
-    </div>
-    <div class="card-body">{{this.summary}}</div>
-  </div>
-  {{/each}} {{#unless articles.length}}
-  <div class='alert alert-warning text-center'>
-    <h4>Uh Oh. Looks like we don't have any new articles.</h4>
-  </div>
-  <div class="card">
-    <div class="card-header text-center">
-      <h3>What Would You Like To Do?</h3>
-    </div>
-    <div class="card-body text-center">
-      <h4>
-        <a href="/" class="scrape-new">Try Scraping New Articles</a> | 
-      
-        <a href="/saved">Go to Saved Articles</a>
-      </h4>
-    </div>
-  </div>
-  {{/unless}}
-</div>
+            <div data-_id="{{this._id}}" class="card">
+              <div class="card-header">
+                <h3>
+                  <a class="article-link" target="_blank" rel="noopener noreferrer" href="{{this.url}}">{{this.headline}}</a>
+                  <a class="btn btn-success save">Save Article</a>
+                </h3>
+              </div>
+              <div class="card-body">{{this.summary}}</div>
+            </div>
+            {{/each}} {{#unless articles.length}}
+            <div class='alert alert-warning text-center'>
+              <h4>Uh Oh. Looks like we don't have any new articles.</h4>
+            </div>
+            <div class="card">
+              <div class="card-header text-center">
+                <h3>What Would You Like To Do?</h3>
+              </div>
+              <div class="card-body text-center">
+                <h4>
+                  <a href="/" class="scrape-new">Try Scraping New Articles</a> | 
+                
+                  <a href="/saved">Go to Saved Articles</a>
+                </h4>
+              </div>
+            </div>
+            {{/unless}}
+          </div>
 
 
 
         
         {{!-- <div id="container">
           <div class="row">
-            <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Latest News Headlines</h5>
+            <div class="col-12">
+                <div class="card">
                   <ul id="articles">
-                    {{#each Article}}
+                    {{#each articles}}
                       <div data-_id="{{this._id}}" class="card">
                         <div class="card-header">
                           <h3> 
@@ -85,11 +89,8 @@
                       <div class="alert alert warning text-center">
                         <h3>What would you like to do?</h3>
                       </div>
-                      <div class="card-body text-center">
                         <div class="card-body text-center">
-                          <h4> <a class="scrape-new">Try Scraping New Articles</a>
-                          </h4>
-                        <h4>
+                          <h4> <a href="/" class="scrape-new">Try Scraping New Articles</a> |
                           <a href="/saved">Go to Saved Articles</a>
                         </h4>
                       </div>
