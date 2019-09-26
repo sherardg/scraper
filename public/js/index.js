@@ -12,11 +12,10 @@ $(document).ready(function(){
 
 function initPage () {
 //Empty the article container and run AJAX for the unsaved articles
-
+articleContainer.empty();
 // $.get("/api/articles")
 $.get("/api/headlines?saved=false")
 .then(function(data) {
-    articleContainer.empty();
 //Render any articles to the page
 if (data && data.length) {
     renderArticles(data);
@@ -39,15 +38,16 @@ function renderArticles(articles) {
 
 function createCard(article) {
 //Function to construct JQuery element containing all the formatted HTML for the bootstrap card
-    var card = $("<div class='card'>");
-    var cardHeader = $("<div class='card-header'>").append(
-    $("<h3>").append (
-        $("<a class='article-link' target='_blank' rel='noopener noreferrer'>")
-        .attr("href", article.url)
-        .text(article.headline),
-      $("<a class='btn btn-success save'>Save Article</a>")
-    )
-  );
+        var card = $("<div class='card'>");
+        var cardHeader = $("<div class='card-header'>").append(
+        $("<h3>").append(
+            $("<a class='article-link' target='_blank' rel='noopener noreferrer'>")
+            .attr("href", article.url)
+            .text(article.headline),
+            $("<a class='btn btn-success save'>Save Article</a>")
+        )
+        );
+
   var cardBody = $("<div class='card-body'>").text(article.summary);
 
   card.append(cardHeader, cardBody);
@@ -70,7 +70,7 @@ var emptyAlert = $(
     "<h3>What Would You Like To Do?</h3>",
     "</div>",
     "<div class='card-body text-center'>",
-    "<h4><a class='scrape-new'>Try Scraping New Articles</a></h4>",
+    "<h4><a href='/' class='scrape-new'>Try Scraping New Articles</a></h4>",
     "<h4><a href='/saved'>Go to Saved Articles</a></h4>",
     "</div>",
     "</div>"

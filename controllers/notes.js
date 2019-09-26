@@ -16,6 +16,7 @@ module.exports = {
       res.json(dbNote);
     });
   },
+
   // Delete a note with a given id
   delete: function(req, res) {
     db.Note.remove({ _id: req.params.id }).then(function(dbNote) {
