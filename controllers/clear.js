@@ -2,7 +2,7 @@ var db = require ("../models");
 
 module.exports = {
     clearDB: function (req, res) {
-        db.Headline.remove({})
+        db.Article.remove({})
             .then(function() {
                 return db.Note.remove({});
             })

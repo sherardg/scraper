@@ -105,8 +105,9 @@ function renderEmpty() {
     var newNote = $(".bootbox-body textarea").val().trim();
 
     if (newNote) {
-        noteData = {
-            _headlineId: $(this).data("article")._id,
+        noteData = { 
+            //_headlineId:
+            _id: $(this).data("article")._id,
             noteText: newNote 
         };
         $.post("/api/notes", noteData).then(function() {
@@ -153,6 +154,11 @@ function renderEmpty() {
     var articleToDelete = $(this)
         .parents(".card")
         .data();
+
+        // Remove card from page
+        $(this)
+        .parents(".card")
+        .remove();
 
         $.ajax({
             method: "DELETE",

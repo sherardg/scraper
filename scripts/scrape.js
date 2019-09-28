@@ -5,7 +5,6 @@ var scrape = function() {
     return axios.get("https://6abc.com/").then (function(res){
 
     var $ = cheerio.load(res.data);
-    console.log("scraping data")
 
     var articles = [];
 
@@ -15,7 +14,6 @@ var scrape = function() {
         var url= $(this).find("a").attr("href");
         var profile= $(this).find("img").attr("src");
         var sum = $(this).find(".headline-list-item").text().trim(); 
-        console.log(url);
 
         if (head && sum && profile && url) {
             //Replace regex method to clean up white space
@@ -29,7 +27,7 @@ var scrape = function() {
                 url: "https://6abc.com/" + url
             };
             articles.push(dataToAdd);
-            console.log("Articles", articles);
+            // console.log("Articles", articles);
         } 
     });
         return articles;

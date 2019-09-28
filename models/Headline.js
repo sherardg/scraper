@@ -6,7 +6,7 @@ var headlineSchema = new Schema({
     headline: {
         type: String,
         required: true,
-        unique: true
+        unique: { index: { unique: true } }
     },
     summary: {
         type: String,

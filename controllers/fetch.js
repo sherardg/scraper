@@ -9,9 +9,11 @@ module.exports = {
         return scrape()
         .then(function(articles){
         // insert articles into db
-        return db.Headline.create(articles);
-        })
+        return db.Article.create(articles);
+        }) 
         .then(function(dbHeadline) {
+            console.log("dbHeadline", articles);
+
             if (dbHeadline.length === 0) {
                 res.json({
                     message: "No new articles today.  Check back tomorrow!"
@@ -21,7 +23,9 @@ module.exports = {
                 // Otherwise send back a count of how many new articles we got
                 res.json({
                   message: "Added " + dbHeadline.length + " new articles!"
-                });
+                });         
+                
+
             }
       
         })
