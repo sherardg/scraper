@@ -13,6 +13,7 @@ function initPage() {
 articleContainer.empty();
 $.get("/api/headlines?saved=true").then(function(data){
     //If we have headline then render them to display on the page
+    console.log(data);
     if (data && data.length) {
         renderArticles(data);
     } else {
@@ -33,19 +34,19 @@ articleContainer.append(articleCards);
 }
 
 function createCard(article) {
-    var card = 
-    $("<div class='card card'>",
-       "<div class='card-header'>".append(
+    var card = $("<div class='card card'>");
+    var cardHeader = $("<div class='card-header'>").append(
         $("<h3>").append(
           $("<a class='article-link' target='_blank' rel='noopener noreferrer'>")
             .attr("href", article.url)
-            .text(article.headline),
+            .text(article.title),
           $("<a class='btn btn-danger delete'>Delete From Saved</a>"),
           $("<a class='btn btn-info notes'>Article Notes</a>")
         )
-       ));
+       );
        
        var cardBody = $("<div class='card-body'>").text(article.summary);
+       console.log("Article Summary", article.summary);
        
        card.append(cardHeader, cardBody);
 

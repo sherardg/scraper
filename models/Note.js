@@ -6,9 +6,9 @@ var Schema = mongoose.Schema;
 // Using the Schema constructor, create a new NoteSchema object
 // This is similar to a Sequelize model
 var noteSchema = new Schema({
-  _headlineId: {
+  _articleId: {
       type: Schema.Types.ObjectId,
-      ref: "Headline"
+      ref: "Article"
   },
     date: {
       type: Date,

@@ -11,10 +11,12 @@ module.exports = {
         // insert articles into db
         return db.Article.create(articles);
         }) 
-        .then(function(dbHeadline) {
+        .then(function(dbArticle) {
             console.log("dbHeadline", articles);
 
             if (dbHeadline.length === 0) {
+                console.log("dbHeadline", articles);
+
                 res.json({
                     message: "No new articles today.  Check back tomorrow!"
                 });
@@ -22,7 +24,7 @@ module.exports = {
             else {
                 // Otherwise send back a count of how many new articles we got
                 res.json({
-                  message: "Added " + dbHeadline.length + " new articles!"
+                  message: "Added " + dbArticle.length + " new articles!"
                 });         
                 
 

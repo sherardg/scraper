@@ -102,6 +102,7 @@
       
       .card .card-header h3 {
         color: white;
+        padding-right:10px;
       }
       
       .card .card-header .btn {

@@ -1,5 +1,6 @@
 //Controller for our headlines
 //Get scrape scripts
+var scrape = require("../scripts/scrape");
 
 var db = require("../models");
 

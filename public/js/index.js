@@ -9,9 +9,10 @@ $(document).ready(function() {
   //Run initPage to get started
   initPage();
 
+  articleContainer.empty();
+
   function initPage() {
     //Empty the article container and run AJAX for the unsaved articles
-    articleContainer.empty();
     // $.get("/api/articles")
     $.get("/api/headlines?saved=false").then(function(data) {
       console.log(data);
@@ -22,7 +23,6 @@ $(document).ready(function() {
       } else {
         console.log("empty");
         renderEmpty();
-
       }
     });
   }
@@ -35,15 +35,16 @@ $(document).ready(function() {
       articleCards.push(createCard(articles[i]));
     }
     articleContainer.append(articleCards);
+    console.log("Article Cards", articleCards);
   }
 
   function createCard(article) {
     //Function to construct JQuery element containing all the formatted HTML for the bootstrap card
       var card = $("<div class='card'>");
       var cardHeader = $("<div class='card-header'>").append(
-      $("<h4>").append(
-        $("<a  target='_blank' rel='noopener noreferrer'>")
-          // .attr("href", article.url)
+      $("<h3>").append(
+        $("<a class='article-link' target='_blank' rel='noopener noreferrer'>")
+          .attr("href", article.url)
           .text(article.title),
         $("<a class='btn btn-success save'>Save Article</a>")
       )
@@ -58,6 +59,7 @@ $(document).ready(function() {
     // We return the constructed card jQuery element
     return card;
   }
+  console.log("Card", card);
 
   function renderEmpty() {
     //function renders some HTML if we do not have any article to display
@@ -87,10 +89,11 @@ $(document).ready(function() {
     var articleToSave = $(this)
       .parents(".card")
       .data();
+      console.log("Article to Save", articleToSave)
     // Remove card from page
-    // $(this)
-    // .parents(".card")
-    // .remove();
+    $(this)
+    .parents(".card")
+    .remove();
 
     articleToSave.saved = true;
 
@@ -108,6 +111,7 @@ $(document).ready(function() {
   function handleArticleScrape() {
     console.log("Button clicked");
     $.get("/api/fetch").then(function(data) {
+      console.log("data:", data);
       initPage();
       bootbox.alert($("<h3 class='text-center m-top-80'>").text(data.message));
     });

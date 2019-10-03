@@ -27,7 +27,6 @@ var scrape = function() {
                 url: "https://6abc.com/" + url
             };
             articles.push(dataToAdd);
-            // console.log("Articles", articles);
         } 
     });
         return articles;
